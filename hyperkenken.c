@@ -315,7 +315,7 @@ static void gen_adj_pairs(int N, int *pairs, int *pair_cnt) {
 
 static void generate_inequalities(Puzzle *P, double density) {
     int N = P->N;
-    int pairs[CELLMAX * 2];
+    int pairs[CELLMAX * 2];;
     int pair_cnt = 0;
     gen_adj_pairs(N, pairs, &pair_cnt);
 
