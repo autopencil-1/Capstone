@@ -366,7 +366,7 @@ class Preprocesser:
         return parts[0], parts[1], parts[2]
 
 if __name__ == "__main__":
-    with open("../hyperkenken.c", "r") as f:
+    with open("hyperkenken.c", "r") as f:
         code = f.read()
     pp = Preprocesser(content=code, out_path="main.pp.c")
     pp.preprocess()
