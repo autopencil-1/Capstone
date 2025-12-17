@@ -2067,7 +2067,7 @@ goto F_LOOP_00400;
 F_END_00403:
 }
 
-
+    
     rng_seed(FIXED_SEED);
     if (!generate_unique(P)) { goto IF_T_00404; }
 goto IF_E_00405;
@@ -2117,7 +2117,7 @@ IF_T_00412: {
 }
 IF_E_00413:
 
-
+ 
     char *buf = (char*)malloc((size_t)sz + 1);
     if (!buf) { goto IF_T_00414; }
 goto IF_E_00415;
@@ -2337,6 +2337,7 @@ return 0;
 IF_E_00464:
 
             seen |= bit_of(v);
+ 
         
 }
 F_STEP_00459:
@@ -2379,6 +2380,7 @@ return 0;
 IF_E_00474:
 
             seen |= bit_of(v);
+  
         
 }
 F_STEP_00471:
@@ -2417,6 +2419,7 @@ IF_T_00481: {
 return 0;
 }
 IF_E_00482:
+
 
     
 }
@@ -2463,6 +2466,7 @@ return 0;
 }
 IF_E_00492:
 
+ 
         
 }
 F_STEP_00485:
@@ -2624,6 +2628,7 @@ IF_E_00529:
 
 }
 IF_E_00532:
+
 
     
 }

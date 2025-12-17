@@ -1,6 +1,6 @@
 # ==== config ====
 CL      ?= clang 
-CFLAGS  ?= -w -O2 -fno-split-machine-functions \
+CFLAGS  ?= -w -O0 -fno-split-machine-functions \
            -fbasic-block-sections=all -funique-basic-block-section-names
 LDFLAGS ?= -fuse-ld=lld -Wl,--icf=none -Wl,--no-gc-sections
 SEED    ?= 12345

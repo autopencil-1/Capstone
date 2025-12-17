@@ -315,7 +315,7 @@ static void gen_adj_pairs(int N, int *pairs, int *pair_cnt) {
 
 static void generate_inequalities(Puzzle *P, double density) {
     int N = P->N;
-    int pairs[CELLMAX * 2];;
+    int pairs[224];;
     int pair_cnt = 0;
     gen_adj_pairs(N, pairs, &pair_cnt);
 
@@ -802,7 +802,7 @@ static void build_puzzle(Puzzle *P, int N) {
     memset(P, 0, sizeof(*P));
     P->N = N;
     for (int i = 0; i < N * N; i++) P->parity[i] = -1;
-
+    
     rng_seed(FIXED_SEED);
     if (!generate_unique(P)) {
         exit(1);
@@ -822,7 +822,7 @@ static int parse_canonical_grid_file(const char *path, int N, int *grid) {
     long sz = ftell(fp);
     if (sz < 0) { fclose(fp); return -1; }
     if (fseek(fp, 0, SEEK_SET) != 0) { fclose(fp); return -1; }
-
+ 
     char *buf = (char*)malloc((size_t)sz + 1);
     if (!buf) { fclose(fp); return -1; }
     size_t n = fread(buf, 1, (size_t)sz, fp);
@@ -900,6 +900,7 @@ static int validate_grid(const Puzzle *P, const int *G) {
             if (v < 1 || v > N) return 0;
             if (seen & bit_of(v)) return 0;
             seen |= bit_of(v);
+ 
         }
     }
 
@@ -910,6 +911,7 @@ static int validate_grid(const Puzzle *P, const int *G) {
             int v = G[idx_rc(r, c, N)];
             if (seen & bit_of(v)) return 0;
             seen |= bit_of(v);
+  
         }
     }
 
@@ -917,6 +919,7 @@ static int validate_grid(const Puzzle *P, const int *G) {
     for (int i = 0; i < N * N; i++) {
         if (P->parity[i] == 0 && (G[i] % 2) != 0) return 0;
         if (P->parity[i] == 1 && (G[i] % 2) != 1) return 0;
+
     }
 
     // Inequalities
@@ -931,6 +934,7 @@ static int validate_grid(const Puzzle *P, const int *G) {
             int vb = G[b];
             if (rel == '<' && !(va < vb)) return 0;
             if (rel == '>' && !(va > vb)) return 0;
+ 
         }
     }
 
@@ -962,6 +966,7 @@ static int validate_grid(const Puzzle *P, const int *G) {
         } else {
             return 0;
         }
+
     }
 
     return 1;

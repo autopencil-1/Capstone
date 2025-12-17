@@ -22,13 +22,13 @@ def run_single_execution(binary, argument):
 
 def run_benchmark_multithread():
     # 1. 설정
-    binaries = ["./plain", "./ollvm_bcf_hyperkenken", "./ollvm_fla_hyperkenken", "./ollvm_bcf_fla_hyperkenken", "./custom_obf"] 
-    argument = "../hyper_kenken_solution.txt"
+    binaries = ["./plain", "./ollvm_bcf", "./ollvm_fla", "./ollvm_bcf_fla", "./custom_obf"] 
+    argument = "hyper_kenken_solution.txt"
     iterations = 5
     
     # 병렬 처리를 위한 워커 수 설정 (기본값: CPU 코어 수 + 4)
     # 너무 높으면 오버헤드가 커집니다.
-    max_workers = os.cpu_count() or 4 
+    max_workers = os.cpu_count() or 8 
 
     benchmark_data = {}
 
@@ -58,11 +58,11 @@ def run_benchmark_multithread():
         print(" 완료.")
 
     # 3. 데이터 분석 및 출력
-    if "./plain_opt_hyperkenken" not in benchmark_data or not benchmark_data["./plain_opt_hyperkenken"]:
-        print("오류: 기준이 되는 './plain_opt_hyperkenken' 데이터가 충분하지 않습니다.")
+    if "./plain" not in benchmark_data or not benchmark_data["./plain"]:
+        print("오류: 기준이 되는 './plain' 데이터가 충분하지 않습니다.")
         return
 
-    plain_mean = statistics.mean(benchmark_data["./plain_opt_hyperkenken"])
+    plain_mean = statistics.mean(benchmark_data["./plain"])
     print("\n" + "="*75)
     print(f"{'Binary':<15} | {'Mean (sec)':<15} | {'Std Dev':<15} | {'Slowdown (x)':<15}")
     print("-" * 75)
